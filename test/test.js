@@ -10,7 +10,7 @@ function getFixturePath(testName) {
   return path.join(__dirname, 'fixture', testName + '.json');
 }
 
-console.log(begoo(chalk.red('WHAT DOES THE YO SAY??? ') + chalk.yellow('\'ALLO \'ALLO')));
+console.log(begoo(chalk.red('WHAT DOES BEGOO MEANS??? ') + chalk.yellow('\'Say')));
 
 describe('begoo', function () {
   // New test template.
@@ -32,7 +32,6 @@ describe('begoo', function () {
   it('should return correctly formatted string', function (done) {
     var testName = 'correctly-formatted';
     var expected = begoo('Hi');
-    console.log('-----------expected---------------');
     fs.readFile(getFixturePath(testName), function (err, data) {
       assert.ifError(err);
       assert.equal(JSON.parse(data), expected);
