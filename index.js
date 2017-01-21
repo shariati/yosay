@@ -68,9 +68,9 @@ module.exports = function (message, options) {
     }
   }
 
-    if (options.avatar) {
-      avatar = stripAnsi(message).toLowerCase().split(' ').sort()[0].length;
-    
+  if (options.avatar) {
+    avatar = stripAnsi(message).toLowerCase().split(' ').sort()[0].length;
+
     if (maxLength < options.maxLength) {
       maxLength = options.maxLength;
       TOTAL_CHARACTERS_PER_LINE = maxLength + YEOMAN_CHARACTER_WIDTH + topOffset;
