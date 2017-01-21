@@ -49,12 +49,12 @@ $ begoo --help
     echo <string> | yosay
 
   Example
-    begoo 'Amin forked the code from Sindre'
+    begoo 'Amin forked the code from yosay'
 
      |\_/|     
     / @ @ \    ╭──────────────────────────╮
    ( > º < )   │   Amin forked the code   │
-    `>>x<<´    │        from Sindre       │
+    `>>x<<´    │        from yosay        │
     /  O  \    ╰──────────────────────────╯
 
 ```
