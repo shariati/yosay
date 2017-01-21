@@ -11,19 +11,16 @@ var cliBoxes = require('cli-boxes');
 
 var border = cliBoxes.round;
 var leftOffset = 17;
+
 var defaultGreeting =
-  '\n     _-----_     ' +
-  '\n    |       |    ' +
-  '\n    |' + chalk.red('--(o)--') + '|    ' +
-  '\n   `---------´   ' +
-  '\n    ' + chalk.yellow('(') + ' _' + chalk.yellow('´U`') + '_ ' + chalk.yellow(')') + '    ' +
-  '\n    /___A___\\   /' +
-  '\n     ' + chalk.yellow('|  ~  |') + '     ' +
-  '\n   __' + chalk.yellow('\'.___.\'') + '__   ' +
-  '\n ´   ' + chalk.red('`  |') + '° ' + chalk.red('´ Y') + ' ` ';
+'\n     |\\_/|     ' +  
+'\n    / '+chalk.yellow('@')+' '+chalk.yellow('@')+' \\    ' +
+'\n   ( > º < )   ' +
+'\n    `' + chalk.yellow('>>') + chalk.red('x') + chalk.yellow('<<') +'´    ' +
+'\n    /  O  \\    ';
 
 module.exports = function (message, options) {
-  message = (message || 'Welcome to Yeoman, ladies and gentlemen!').trim();
+  message = (message || 'Welcome to Begoo! \n Meow ...').trim();
   options = options || {};
 
   /*
@@ -43,6 +40,7 @@ module.exports = function (message, options) {
    */
 
   var maxLength = 24;
+  var avatar = defaultGreeting;
   var frame;
   var styledIndexes = {};
   var completedString = '';
@@ -63,6 +61,15 @@ module.exports = function (message, options) {
 
   if (options.maxLength) {
     maxLength = stripAnsi(message).toLowerCase().split(' ').sort()[0].length;
+
+    if (maxLength < options.maxLength) {
+      maxLength = options.maxLength;
+      TOTAL_CHARACTERS_PER_LINE = maxLength + YEOMAN_CHARACTER_WIDTH + topOffset;
+    }
+  }
+
+    if (options.avatar) {
+    avatar = stripAnsi(message).toLowerCase().split(' ').sort()[0].length;
 
     if (maxLength < options.maxLength) {
       maxLength = options.maxLength;
@@ -175,6 +182,6 @@ module.exports = function (message, options) {
       }
 
       return greeting;
-    }, defaultGreeting.split(/\n/))
+    }, avatar.split(/\n/))
     .join('\n') + '\n';
 };
