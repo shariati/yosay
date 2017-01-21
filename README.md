@@ -1,4 +1,4 @@
-# yosay [![Build Status](https://travis-ci.org/yeoman/yosay.svg?branch=master)](https://travis-ci.org/yeoman/yosay)
+# begoo [![Build Status](https://travis-ci.org/shariati/begoo.svg?branch=master)](https://travis-ci.org/shariati/begoo/)
 
 > Say Something
 
