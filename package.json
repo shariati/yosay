@@ -1,6 +1,6 @@
 {
   "name": "begoo",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Say something with style ;)",
   "license": "BSD-2-Clause",
   "keywords": [
@@ -29,7 +29,8 @@
     "node": ">=0.10.0"
   },
   "scripts": {
-    "test": "xo && mocha"
+    "test": "xo && mocha",
+    "readme": "node ./node_modules/.bin/node-readme"
   },
   "dependencies": {
     "ansi-regex": "^2.0.0",
