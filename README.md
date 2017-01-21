@@ -1,8 +1,8 @@
 # yosay [![Build Status](https://travis-ci.org/yeoman/yosay.svg?branch=master)](https://travis-ci.org/yeoman/yosay)
 
-> Tell Yeoman what to say
+> Say Something
 
-Like [cowsay](http://en.wikipedia.org/wiki/Cowsay), but less cow.
+Like [yosay](https://github.com/yeoman/yosay), with some avatars. Special thanks to [sindresorhus] for creating such an awesome script.
 
 ![](screenshot.png)
 
@@ -10,63 +10,56 @@ Like [cowsay](http://en.wikipedia.org/wiki/Cowsay), but less cow.
 ## Install
 
 ```
-$ npm install --save yosay
+$ npm install --save begoo
 ```
 
 
 ## Usage
 
 ```js
-const yosay = require('yosay');
+const begoo = require('begoo');
 
-console.log(yosay('Hello, and welcome to my fantastic generator full of whimsy and bubble gum!'));
+console.log(begoo('Welcome to Begoo! \n Meow ...'));
 
 /*
-     _-----_     ╭──────────────────────────╮
-    |       |    │ Hello, and welcome to my │
-    |--(o)--|    │ fantastic generator full │
-   `---------´   │   of whimsy and bubble   │
-    ( _´U`_ )    │           gum!           │
-    /___A___\   /╰──────────────────────────╯
-     |  ~  |
-   __'.___.'__
- ´   `  |° ´ Y `
+     |\_/|     
+    / @ @ \    ╭──────────────────────────╮
+   ( > º < )   │     Welcome to Begoo!    │
+    `>>x<<´    │         Meow ...         │
+    /  O  \    ╰──────────────────────────╯
+
  */
 ```
 
-*You can style your text with [chalk](https://github.com/sindresorhus/chalk) before passing it to `yosay`.*
+*You can style your text with [chalk](https://github.com/sindresorhus/chalk) before passing it to `begoo`.*
 
 
 ## CLI
 
 ```
-$ npm install --global yosay
+$ npm install --global begoo
 ```
 
 ```
-$ yosay --help
+$ begoo --help
 
   Usage
-    yosay <string>
-    yosay <string> --maxLength 8
+    begoo <string>
+    begoo <string> --maxLength 8
     echo <string> | yosay
 
   Example
-    yosay 'Sindre is a horse'
+    begoo 'Amin forked the code from Sindre'
 
-     _-----_
-    |       |
-    |--(o)--|    ╭──────────────────────────╮
-   `---------´   │     Sindre is a horse    │
-    ( _´U`_ )    ╰──────────────────────────╯
-    /___A___\   /
-     |  ~  |
-   __'.___.'__
- ´   `  |° ´ Y `
+     |\_/|     
+    / @ @ \    ╭──────────────────────────╮
+   ( > º < )   │   Amin forked the code   │
+    `>>x<<´    │        from Sindre       │
+    /  O  \    ╰──────────────────────────╯
+
 ```
 
 
 ## License
 
 [BSD license](http://opensource.org/licenses/bsd-license.php)
-Copyright (c) Google

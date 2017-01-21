@@ -1,7 +1,7 @@
 {
-  "name": "yosay",
-  "version": "1.2.1",
-  "description": "Tell Yeoman what to say",
+  "name": "begoo",
+  "version": "1.0.0",
+  "description": "Say something with style ;)",
   "license": "BSD-2-Clause",
   "keywords": [
     "cli-app",
@@ -15,9 +15,9 @@
     "message",
     "ansi"
   ],
-  "homepage": "yeoman.io",
-  "author": "Yeoman",
-  "repository": "yeoman/yosay",
+  "homepage": "https://github.com/shariati/begoo",
+  "author": "Amin Shariati",
+  "repository": "shariati/begoo",
   "bin": "cli.js",
   "files": [
     "index.js",
