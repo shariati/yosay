@@ -1,4 +1,4 @@
-# begoo [![Build Status](https://travis-ci.org/shariati/begoo.svg?branch=master)](https://travis-ci.org/shariati/begoo/)
+# begoo [![Build Status](https://travis-ci.org/shariati/begoo.svg?branch=master)](https://travis-ci.org/shariati/begoo)[![Coverage Status](https://coveralls.io/repos/github/shariati/begoo/badge.svg?branch=master)](https://coveralls.io/github/shariati/begoo?branch=master)
 
 > Say Something
 
