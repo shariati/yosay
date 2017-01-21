@@ -32,7 +32,7 @@ describe('begoo', function () {
   it('should return correctly formatted string', function (done) {
     var testName = 'correctly-formatted';
     var expected = begoo('Hi');
-
+    console.log('-----------expected---------------');
     fs.readFile(getFixturePath(testName), function (err, data) {
       assert.ifError(err);
       assert.equal(JSON.parse(data), expected);
@@ -53,7 +53,9 @@ describe('begoo', function () {
 
   it('should allow customization of line length', function (done) {
     var testName = 'length-customization';
-    var expected = begoo('Hi', {maxLength: 8});
+    var expected = begoo('Hi', {
+      maxLength: 8
+    });
 
     fs.readFile(getFixturePath(testName), function (err, data) {
       assert.ifError(err);
@@ -64,7 +66,9 @@ describe('begoo', function () {
 
   it('should override a maxLength setting that is too short', function (done) {
     var testName = 'override-maxLength';
-    var expected = begoo('Hello, buddy!', {maxLength: 4});
+    var expected = begoo('Hello, buddy!', {
+      maxLength: 4
+    });
 
     fs.readFile(getFixturePath(testName), function (err, data) {
       assert.ifError(err);
@@ -142,7 +146,9 @@ describe('begoo', function () {
 
     it('should overflow when lines exceed the default greeting', function (done) {
       var testName = 'overflow';
-      var expected = begoo('Lie on your belly and purr when you are asleep shove bum in owner’s face like camera lens. Cough furball.', {maxLength: 11});
+      var expected = begoo('Lie on your belly and purr when you are asleep shove bum in owner’s face like camera lens. Cough furball.', {
+        maxLength: 11
+      });
 
       fs.readFile(getFixturePath(testName), function (err, data) {
         assert.ifError(err);
