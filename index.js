@@ -13,10 +13,10 @@ var border = cliBoxes.round;
 var leftOffset = 17;
 
 var defaultGreeting =
-'\n     |\\_/|     ' +  
-'\n    / '+chalk.yellow('@')+' '+chalk.yellow('@')+' \\    ' +
+'\n     |\\_/|     ' +
+'\n    / ' + chalk.yellow('@') + ' ' + chalk.yellow('@') + ' \\    ' +
 '\n   ( > º < )   ' +
-'\n    `' + chalk.yellow('>>') + chalk.red('x') + chalk.yellow('<<') +'´    ' +
+'\n    `' + chalk.yellow('>>') + chalk.red('x') + chalk.yellow('<<') + '´    ' +
 '\n    /  O  \\    ';
 
 module.exports = function (message, options) {
@@ -69,8 +69,8 @@ module.exports = function (message, options) {
   }
 
     if (options.avatar) {
-    avatar = stripAnsi(message).toLowerCase().split(' ').sort()[0].length;
-
+      avatar = stripAnsi(message).toLowerCase().split(' ').sort()[0].length;
+    
     if (maxLength < options.maxLength) {
       maxLength = options.maxLength;
       TOTAL_CHARACTERS_PER_LINE = maxLength + YEOMAN_CHARACTER_WIDTH + topOffset;
