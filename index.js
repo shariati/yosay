@@ -8,16 +8,50 @@ var ansiStyles = require('ansi-styles');
 var ansiRegex = require('ansi-regex')();
 var repeating = require('repeating');
 var cliBoxes = require('cli-boxes');
+var _ = require('lodash');
 
 var border = cliBoxes.round;
 var leftOffset = 17;
 
 var defaultGreeting =
-'\n     |\\_/|     ' +
-'\n    / ' + chalk.yellow('@') + ' ' + chalk.yellow('@') + ' \\    ' +
-'\n   ( > º < )   ' +
-'\n    `' + chalk.yellow('>>') + chalk.red('x') + chalk.yellow('<<') + '´    ' +
-'\n    /  O  \\    ';
+  '\n     |\\_/|     ' +
+  '\n    / ' + chalk.yellow('@') + ' ' + chalk.yellow('@') + ' \\    ' +
+  '\n   ( > º < )   ' +
+  '\n    `' + chalk.yellow('>>') + chalk.red('x') + chalk.yellow('<<') + '´    ' +
+  '\n    /  O  \\    ';
+
+var avatarList = [{
+  name: 'cat',
+  layout: '\n     |\\_/|     ' +
+    '\n    / ' + chalk.yellow('@') + ' ' + chalk.yellow('@') + ' \\    ' +
+    '\n   ( > º < )   ' +
+    '\n    `' + chalk.yellow('>>') + chalk.red('x') + chalk.yellow('<<') + '´    ' +
+    '\n    /  O  \\    ',
+  width: 17
+},
+{
+  name: 'dog',
+  layout: '\n             __        ' +
+    '\n            /  \\      ' +
+    '\n           / ..|\\     ' +
+    '\n          (_\\  |_)    ' +
+    '\n          /  \\@\'      ' +
+    '\n         /     \\      ' +
+    '\n    _   /  `   |       ' +
+    '\n    \\\\/  \\  | _\\   ' +
+    '\n     \\   /_ || \\\\_  ' +
+    '\n      \\____)|_) \\_)  ',
+  width: 22
+},
+{
+  name: 'chicken',
+  layout: '\n      \\\\     ' +
+    '\n      (o>    ' +
+    '\n   \\\\_//)    ' +
+    '\n    \\_/_)    ' +
+    '\n     _|_     ',
+  width: 15
+}];
 
 module.exports = function (message, options) {
   message = (message || 'Welcome to Begoo! \n Meow ...').trim();
@@ -47,14 +81,13 @@ module.exports = function (message, options) {
   var regExNewLine;
   var topOffset = 4;
 
-  // Amount of characters of the yeoman character »column«      → `    /___A___\   /`
-  var YEOMAN_CHARACTER_WIDTH = 17;
+  var DEFAULT_CHARACTER_WIDTH = 17;
 
   // Amount of characters of the default top frame of the speech bubble → `╭──────────────────────────╮`
-  var DEFAULT_TOP_FRAME_WIDTH = 28;
+  var DEFAULT_TOP_FRAME_WIDTH = 20;
 
   // Amount of characters of a total line
-  var TOTAL_CHARACTERS_PER_LINE = YEOMAN_CHARACTER_WIDTH + DEFAULT_TOP_FRAME_WIDTH;
+  var TOTAL_CHARACTERS_PER_LINE = DEFAULT_CHARACTER_WIDTH + DEFAULT_TOP_FRAME_WIDTH;
 
   // The speech bubble will overflow the Yeoman character if the message is too long.
   var MAX_MESSAGE_LINES_BEFORE_OVERFLOW = 7;
@@ -64,16 +97,21 @@ module.exports = function (message, options) {
 
     if (maxLength < options.maxLength) {
       maxLength = options.maxLength;
-      TOTAL_CHARACTERS_PER_LINE = maxLength + YEOMAN_CHARACTER_WIDTH + topOffset;
+      TOTAL_CHARACTERS_PER_LINE = maxLength + DEFAULT_CHARACTER_WIDTH + topOffset;
     }
   }
 
   if (options.avatar) {
     avatar = stripAnsi(message).toLowerCase().split(' ').sort()[0].length;
 
-    if (maxLength < options.maxLength) {
-      maxLength = options.maxLength;
-      TOTAL_CHARACTERS_PER_LINE = maxLength + YEOMAN_CHARACTER_WIDTH + topOffset;
+    avatar = _.find(avatarList, {
+      name: options.avatar
+    });
+    if (typeof avatar === 'undefined') {
+      avatar = defaultGreeting;
+    } else {
+      avatar = avatar.layout;
+      TOTAL_CHARACTERS_PER_LINE = avatar.width + DEFAULT_TOP_FRAME_WIDTH;
     }
   }
 
@@ -95,7 +133,9 @@ module.exports = function (message, options) {
     styledIndexes[offset] = styledIndexes[offset] ? styledIndexes[offset] + match : match;
   });
 
-  return wrap(stripAnsi(message), maxLength, {hard: true})
+  return wrap(stripAnsi(message), maxLength, {
+    hard: true
+  })
     .split(/\n/)
     .reduce(function (greeting, str, index, array) {
       var paddedString;
