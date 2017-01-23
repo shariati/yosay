@@ -54,7 +54,31 @@ var avatarList = [{
     '\n     _|_     ',
   width: 16,
   leftOffset: 13
-}];
+},
+{
+  name: 'monkey',
+  layout:
+  '\n      /~\\      ' +
+  '\n     C oo      ' +
+  '\n     _( ^)     ' +
+  '\n    /   ~\\     ',
+  width: 16,
+  leftOffset: 15
+},
+{
+  name: 'tux',
+  layout:
+  '\n       .--.        ' +
+  '\n      |o_o |       ' +
+  '\n      |:_/ |       ' +
+  '\n     //   \\ \\      ' +
+  '\n    (|     | )     ' +
+  '\n   /\'\\_   _/`\\     ' +
+  '\n   \\___)=(___/     ',
+  width: 16,
+  leftOffset: 15
+}
+];
 
 module.exports = function (message, options) {
   message = (message || 'Welcome to Begoo! \n Meow ...').trim();
