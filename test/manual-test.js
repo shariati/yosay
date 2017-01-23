@@ -19,6 +19,8 @@ console.log(begoo('Hi', {maxLength: 8}));
 
 console.log(begoo('Hello, buddy!', {maxLength: 4}));
 
+console.log(begoo('Hello, buddy!', {avatar: 'dog'}));
+
 console.log(begoo(chalk.red.bgWhite('Hi')));
 
 console.log(begoo(chalk.red.bgWhite('Hi') + ' there, sir!'));

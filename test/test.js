@@ -39,9 +39,19 @@ describe('begoo', function () {
     });
   });
 
+  it('should return dog avatar string', function (done) {
+    var testName = 'avatar';
+    var expected = begoo('Hi', {avatar: 'dog'});
+    fs.readFile(getFixturePath(testName), function (err, data) {
+      assert.ifError(err);
+      assert.equal(JSON.parse(data), expected);
+      done();
+    });
+  });
+
   it('should return correctly formatted string in two lines', function (done) {
     var testName = 'correctly-formatted-two-lines';
-    var expected = begoo('Welcome to Yeoman, ladies and gentlemen!');
+    var expected = begoo('Welcome to Begoo, ladies and gentlemen!');
 
     fs.readFile(getFixturePath(testName), function (err, data) {
       assert.ifError(err);
