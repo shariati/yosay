@@ -46,7 +46,9 @@ $ begoo --help
   Usage
     begoo <string>
     begoo <string> --maxLength 8
-    echo <string> | yosay
+    begoo <string> --avatar name
+      Available names: cat, dog, chicken
+    echo <string> | begoo
 
   Example
     begoo 'Amin forked the code from yosay'
@@ -56,6 +58,30 @@ $ begoo --help
    ( > º < )   │   Amin forked the code   │
     `>>x<<´    │        from yosay        │
     /  O  \    ╰──────────────────────────╯
+
+
+    begoo 'Bark Bark' --avatar 'dog'
+
+             __        
+            /  \      
+           / ..|\     ╭──────────────────────────╮
+          (_\  |_)    │         Bark Bark        │
+          /  \@'      ╰──────────────────────────╯
+         /     \      
+    _   /  `   |       
+    \\/  \  | _\   
+     \   /_ || \\_  
+      \____)|_) \_)  
+
+
+    begoo 'Its a chicken and egg situation' --avatar 'chicken'
+
+
+      \\     
+      (o>    ╭──────────────────────────╮
+   \\_//)    │   Its a chicken and egg  │
+    \_/_)    │         situation        │
+     _|_     ╰──────────────────────────╯
 
 ```
 
