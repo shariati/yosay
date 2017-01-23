@@ -1,6 +1,8 @@
 # begoo [![npm version](https://badge.fury.io/js/begoo.svg)](https://badge.fury.io/js/begoo)[![Build Status](https://travis-ci.org/shariati/begoo.svg?branch=master)](https://travis-ci.org/shariati/begoo)[![Coverage Status](https://coveralls.io/repos/github/shariati/begoo/badge.svg?branch=master)](https://coveralls.io/github/shariati/begoo?branch=master)
 
-> Say Something
+> Say Something with style ;), It's basically whatever yosay provides plus extra avatars. 
+> will be working on this to add more ascii characters.
+> Feel free suggest what would you like to see in the next update I'll try my best to add it.
 
 Like [yosay](https://github.com/yeoman/yosay), with some avatars. Special thanks to [sindresorhus] for creating such an awesome script.
 
