@@ -11,7 +11,7 @@ var cliBoxes = require('cli-boxes');
 var _ = require('lodash');
 
 var border = cliBoxes.round;
-var leftOffset = 17;
+var leftOffset = 15;
 
 var defaultGreeting =
   '\n     |\\_/|     ' +
@@ -27,11 +27,12 @@ var avatarList = [{
     '\n   ( > º < )   ' +
     '\n    `' + chalk.yellow('>>') + chalk.red('x') + chalk.yellow('<<') + '´    ' +
     '\n    /  O  \\    ',
-  width: 17
+  width: 15,
+  leftOffset: 15
 },
 {
   name: 'dog',
-  layout: '\n             __        ' +
+  layout: '\n             __       ' +
     '\n            /  \\      ' +
     '\n           / ..|\\     ' +
     '\n          (_\\  |_)    ' +
@@ -41,7 +42,8 @@ var avatarList = [{
     '\n    \\\\/  \\  | _\\   ' +
     '\n     \\   /_ || \\\\_  ' +
     '\n      \\____)|_) \\_)  ',
-  width: 22
+  width: 22,
+  leftOffset: 15
 },
 {
   name: 'chicken',
@@ -50,7 +52,8 @@ var avatarList = [{
     '\n   \\\\_//)    ' +
     '\n    \\_/_)    ' +
     '\n     _|_     ',
-  width: 15
+  width: 16,
+  leftOffset: 13
 }];
 
 module.exports = function (message, options) {
@@ -81,7 +84,7 @@ module.exports = function (message, options) {
   var regExNewLine;
   var topOffset = 4;
 
-  var DEFAULT_CHARACTER_WIDTH = 17;
+  var DEFAULT_CHARACTER_WIDTH = 15;
 
   // Amount of characters of the default top frame of the speech bubble → `╭──────────────────────────╮`
   var DEFAULT_TOP_FRAME_WIDTH = 20;
@@ -110,6 +113,7 @@ module.exports = function (message, options) {
     if (typeof avatar === 'undefined') {
       avatar = defaultGreeting;
     } else {
+      leftOffset = avatar.leftOffset;
       avatar = avatar.layout;
       TOTAL_CHARACTERS_PER_LINE = avatar.width + DEFAULT_TOP_FRAME_WIDTH;
     }
