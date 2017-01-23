@@ -16,7 +16,7 @@ require('taketalk')({
       '    begoo <string>',
       '    begoo <string> --maxLength 8',
       '    begoo <string> --avatar name',
-      '    Available names: cat, dog, chicken',
+      '    Available names: cat, dog, chicken, monkey and tux',
       '    echo <string> | begoo',
       '',
       '  Example',
