@@ -1,10 +1,10 @@
 'use strict';
 /* eslint-env mocha */
-var assert = require('assert');
-var fs = require('fs');
-var path = require('path');
-var chalk = require('chalk');
-var begoo = require('../');
+const assert = require('assert');
+const fs = require('fs');
+const path = require('path');
+const chalk = require('chalk');
+const begoo = require('../');
 
 function getFixturePath(testName) {
   return path.join(__dirname, 'fixture', testName + '.json');
@@ -12,7 +12,7 @@ function getFixturePath(testName) {
 
 console.log(begoo(chalk.red('WHAT DOES BEGOO MEANS??? ') + chalk.yellow('\'Say')));
 
-describe('begoo', function () {
+describe('begoo', () => {
   // New test template.
   //
   // it('should _____', function (done) {
@@ -29,137 +29,137 @@ describe('begoo', function () {
   //   });
   // });
 
-  it('should return correctly formatted string', function (done) {
-    var testName = 'correctly-formatted';
-    var expected = begoo('Hi');
-    fs.readFile(getFixturePath(testName), function (err, data) {
+  it('should return correctly formatted string', done => {
+    const testName = 'correctly-formatted';
+    const expected = begoo('Hi');
+    fs.readFile(getFixturePath(testName), (err, data) => {
       assert.ifError(err);
       assert.equal(JSON.parse(data), expected);
       done();
     });
   });
 
-  it('should return dog avatar string', function (done) {
-    var testName = 'avatar';
-    var expected = begoo('Hi', {avatar: 'dog'});
-    fs.readFile(getFixturePath(testName), function (err, data) {
+  it('should return dog avatar string', done => {
+    const testName = 'avatar';
+    const expected = begoo('Hi', {avatar: 'dog'});
+    fs.readFile(getFixturePath(testName), (err, data) => {
       assert.ifError(err);
       assert.equal(JSON.parse(data), expected);
       done();
     });
   });
 
-  it('should return correctly formatted string in two lines', function (done) {
-    var testName = 'correctly-formatted-two-lines';
-    var expected = begoo('Welcome to Begoo, ladies and gentlemen!');
+  it('should return correctly formatted string in two lines', done => {
+    const testName = 'correctly-formatted-two-lines';
+    const expected = begoo('Welcome to Begoo, ladies and gentlemen!');
 
-    fs.readFile(getFixturePath(testName), function (err, data) {
+    fs.readFile(getFixturePath(testName), (err, data) => {
       assert.ifError(err);
       assert.equal(JSON.parse(data), expected);
       done();
     });
   });
 
-  it('should allow customization of line length', function (done) {
-    var testName = 'length-customization';
-    var expected = begoo('Hi', {
+  it('should allow customization of line length', done => {
+    const testName = 'length-customization';
+    const expected = begoo('Hi', {
       maxLength: 8
     });
 
-    fs.readFile(getFixturePath(testName), function (err, data) {
+    fs.readFile(getFixturePath(testName), (err, data) => {
       assert.ifError(err);
       assert.equal(JSON.parse(data), expected);
       done();
     });
   });
 
-  it('should override a maxLength setting that is too short', function (done) {
-    var testName = 'override-maxLength';
-    var expected = begoo('Hello, buddy!', {
+  it('should override a maxLength setting that is too short', done => {
+    const testName = 'override-maxLength';
+    const expected = begoo('Hello, buddy!', {
       maxLength: 4
     });
 
-    fs.readFile(getFixturePath(testName), function (err, data) {
+    fs.readFile(getFixturePath(testName), (err, data) => {
       assert.ifError(err);
       assert.equal(JSON.parse(data), expected);
       done();
     });
   });
 
-  describe('ansi', function () {
-    it('should display ansi styling correctly', function (done) {
-      var testName = 'ansi';
-      var expected = begoo(chalk.red.bgWhite('Hi'));
+  describe('ansi', () => {
+    it('should display ansi styling correctly', done => {
+      const testName = 'ansi';
+      const expected = begoo(chalk.red.bgWhite('Hi'));
 
-      fs.readFile(getFixturePath(testName), function (err, data) {
+      fs.readFile(getFixturePath(testName), (err, data) => {
         assert.ifError(err);
         assert.equal(JSON.parse(data), expected);
         done();
       });
     });
 
-    it('should handle part ansi and part not-ansi', function (done) {
-      var testName = 'half-ansi';
-      var expected = begoo(chalk.red.bgWhite('Hi') + ' there, sir!');
+    it('should handle part ansi and part not-ansi', done => {
+      const testName = 'half-ansi';
+      const expected = begoo(chalk.red.bgWhite('Hi') + ' there, sir!');
 
-      fs.readFile(getFixturePath(testName), function (err, data) {
+      fs.readFile(getFixturePath(testName), (err, data) => {
         assert.ifError(err);
         assert.equal(JSON.parse(data), expected);
         done();
       });
     });
 
-    it('should wrap ansi styling to the next line properly', function (done) {
-      var testName = 'wrap-ansi-styles';
-      var expected = begoo(chalk.red.bgWhite('Hi') + ' there, sir! ' + chalk.bgBlue.white('you are looking') + ' swell today!');
+    it('should wrap ansi styling to the next line properly', done => {
+      const testName = 'wrap-ansi-styles';
+      const expected = begoo(chalk.red.bgWhite('Hi') + ' there, sir! ' + chalk.bgBlue.white('you are looking') + ' swell today!');
 
-      fs.readFile(getFixturePath(testName), function (err, data) {
+      fs.readFile(getFixturePath(testName), (err, data) => {
         assert.ifError(err);
         assert.equal(JSON.parse(data), expected);
         done();
       });
     });
 
-    it('should handle new line properly', function (done) {
-      var testName = 'handle-new-line';
-      var expected = begoo('first line\nsecond line\n\nfourth line');
+    it('should handle new line properly', done => {
+      const testName = 'handle-new-line';
+      const expected = begoo('first line\nsecond line\n\nfourth line');
 
-      fs.readFile(getFixturePath(testName), function (err, data) {
+      fs.readFile(getFixturePath(testName), (err, data) => {
         assert.ifError(err);
         assert.equal(JSON.parse(data), expected);
         done();
       });
     });
 
-    it('should handle fullwidth characters', function (done) {
-      var testName = 'handle-fullwidth';
-      var expected = begoo('项目可以更新了');
+    it('should handle fullwidth characters', done => {
+      const testName = 'handle-fullwidth';
+      const expected = begoo('项目可以更新了');
 
-      fs.readFile(getFixturePath(testName), function (err, data) {
+      fs.readFile(getFixturePath(testName), (err, data) => {
         assert.ifError(err);
         assert.equal(JSON.parse(data), expected);
         done();
       });
     });
 
-    it('should display long words correctly', function (done) {
-      var testName = 'long-words';
-      var expected = begoo('iloveunicornsiloveunicornsiloveunicornsiloveunicornsiloveunicornsiloveunicorns');
+    it('should display long words correctly', done => {
+      const testName = 'long-words';
+      const expected = begoo('iloveunicornsiloveunicornsiloveunicornsiloveunicornsiloveunicornsiloveunicorns');
 
-      fs.readFile(getFixturePath(testName), function (err, data) {
+      fs.readFile(getFixturePath(testName), (err, data) => {
         assert.ifError(err);
         assert.equal(JSON.parse(data), expected);
         done();
       });
     });
 
-    it('should overflow when lines exceed the default greeting', function (done) {
-      var testName = 'overflow';
-      var expected = begoo('Lie on your belly and purr when you are asleep shove bum in owner’s face like camera lens. Cough furball.', {
+    it('should overflow when lines exceed the default greeting', done => {
+      const testName = 'overflow';
+      const expected = begoo('Lie on your belly and purr when you are asleep shove bum in owner’s face like camera lens. Cough furball.', {
         maxLength: 11
       });
 
-      fs.readFile(getFixturePath(testName), function (err, data) {
+      fs.readFile(getFixturePath(testName), (err, data) => {
         assert.ifError(err);
         assert.equal(JSON.parse(data), expected);
         done();

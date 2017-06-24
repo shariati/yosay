@@ -1,26 +1,26 @@
 'use strict';
-var chalk = require('chalk');
-var pad = require('pad-component');
-var wrap = require('wrap-ansi');
-var stringWidth = require('string-width');
-var stripAnsi = require('strip-ansi');
-var ansiStyles = require('ansi-styles');
-var ansiRegex = require('ansi-regex')();
-var repeating = require('repeating');
-var cliBoxes = require('cli-boxes');
-var _ = require('lodash');
+const chalk = require('chalk');
+const pad = require('pad-component');
+const wrap = require('wrap-ansi');
+const stringWidth = require('string-width');
+const stripAnsi = require('strip-ansi');
+const ansiStyles = require('ansi-styles');
+const ansiRegex = require('ansi-regex')();
+const repeating = require('repeating');
+const cliBoxes = require('cli-boxes');
+const _ = require('lodash');
 
-var border = cliBoxes.round;
-var leftOffset = 15;
+const border = cliBoxes.round;
+let leftOffset = 15;
 
-var defaultGreeting =
+const DEFAULT_GREETING =
   '\n     |\\_/|     ' +
   '\n    / ' + chalk.yellow('@') + ' ' + chalk.yellow('@') + ' \\    ' +
   '\n   ( > º < )   ' +
   '\n    `' + chalk.yellow('>>') + chalk.red('x') + chalk.yellow('<<') + '´    ' +
   '\n    /  O  \\    ';
 
-var avatarList = [{
+const AVATAR_LIST = [{
   name: 'cat',
   layout: '\n     |\\_/|     ' +
     '\n    / ' + chalk.yellow('@') + ' ' + chalk.yellow('@') + ' \\    ' +
@@ -100,52 +100,52 @@ module.exports = function (message, options) {
    * Better implementations welcome :)
    */
 
-  var maxLength = 24;
-  var avatar = defaultGreeting;
-  var frame;
-  var styledIndexes = {};
-  var completedString = '';
-  var regExNewLine;
-  var topOffset = 4;
+  let maxLength = 24;
+  let avatar = DEFAULT_GREETING;
+  let frame = '';
+  const styledIndexes = {};
+  let completedString = '';
+  let regExNewLine = '';
+  let topOffset = 4;
 
-  var DEFAULT_CHARACTER_WIDTH = 15;
+  const DEFAULT_CHARACTER_WIDTH = 15;
 
   // Amount of characters of the default top frame of the speech bubble → `╭──────────────────────────╮`
-  var DEFAULT_TOP_FRAME_WIDTH = 20;
+  const DEFAULT_TOP_FRAME_WIDTH = 20;
 
   // Amount of characters of a total line
-  var TOTAL_CHARACTERS_PER_LINE = DEFAULT_CHARACTER_WIDTH + DEFAULT_TOP_FRAME_WIDTH;
+  let totalCharactersPerLine = DEFAULT_CHARACTER_WIDTH + DEFAULT_TOP_FRAME_WIDTH;
 
   // The speech bubble will overflow the Yeoman character if the message is too long.
-  var MAX_MESSAGE_LINES_BEFORE_OVERFLOW = 7;
+  const MAX_MESSAGE_LINES_BEFORE_OVERFLOW = 7;
 
   if (options.maxLength) {
     maxLength = stripAnsi(message).toLowerCase().split(' ').sort()[0].length;
 
     if (maxLength < options.maxLength) {
       maxLength = options.maxLength;
-      TOTAL_CHARACTERS_PER_LINE = maxLength + DEFAULT_CHARACTER_WIDTH + topOffset;
+      totalCharactersPerLine = maxLength + DEFAULT_CHARACTER_WIDTH + topOffset;
     }
   }
 
   if (options.avatar) {
     avatar = stripAnsi(message).toLowerCase().split(' ').sort()[0].length;
 
-    avatar = _.find(avatarList, {
+    avatar = _.find(AVATAR_LIST, {
       name: options.avatar
     });
     if (typeof avatar === 'undefined') {
-      avatar = defaultGreeting;
+      avatar = DEFAULT_GREETING;
     } else {
       leftOffset = avatar.leftOffset;
       avatar = avatar.layout;
-      TOTAL_CHARACTERS_PER_LINE = avatar.width + DEFAULT_TOP_FRAME_WIDTH;
+      totalCharactersPerLine = avatar.width + DEFAULT_TOP_FRAME_WIDTH;
     }
   }
 
   regExNewLine = new RegExp('\\s{' + maxLength + '}');
 
-  var borderHorizontal = repeating(border.horizontal, maxLength + 2);
+  const borderHorizontal = repeating(border.horizontal, maxLength + 2);
 
   frame = {
     top: border.topLeft + borderHorizontal + border.topRight,
@@ -153,8 +153,8 @@ module.exports = function (message, options) {
     bottom: ansiStyles.reset.open + border.bottomLeft + borderHorizontal + border.bottomRight
   };
 
-  message.replace(ansiRegex, function (match, offset) {
-    Object.keys(styledIndexes).forEach(function (key) {
+  message.replace(ansiRegex, (match, offset) => {
+    Object.keys(styledIndexes).forEach(key => {
       offset -= styledIndexes[key].length;
     });
 
@@ -165,8 +165,8 @@ module.exports = function (message, options) {
     hard: true
   })
     .split(/\n/)
-    .reduce(function (greeting, str, index, array) {
-      var paddedString;
+    .reduce((greeting, str, index, array) => {
+      let paddedString = '';
 
       if (!regExNewLine.test(str)) {
         str = str.trim();
@@ -176,15 +176,15 @@ module.exports = function (message, options) {
 
       str = completedString
         .substr(completedString.length - str.length)
-        .replace(/./g, function (char, charIndex) {
+        .replace(/./g, (char, charIndex) => {
           if (index > 0) {
             charIndex += completedString.length - str.length + index;
           }
 
-          var hasContinuedStyle = 0;
-          var continuedStyle;
+          let hasContinuedStyle = 0;
+          let continuedStyle;
 
-          Object.keys(styledIndexes).forEach(function (offset) {
+          Object.keys(styledIndexes).forEach(offset => {
             if (charIndex > offset) {
               hasContinuedStyle++;
               continuedStyle = styledIndexes[offset];
@@ -207,7 +207,7 @@ module.exports = function (message, options) {
 
       paddedString = pad({
         length: stringWidth(str),
-        valueOf: function () {
+        valueOf() {
           return ansiStyles.reset.open + str + ansiStyles.reset.open;
         }
       }, maxLength);
@@ -227,13 +227,13 @@ module.exports = function (message, options) {
         // is too long. So we vertically center the bubble by adding empty lines
         // on top of the greeting.
         if (array.length > MAX_MESSAGE_LINES_BEFORE_OVERFLOW) {
-          var emptyLines = Math.ceil((array.length - MAX_MESSAGE_LINES_BEFORE_OVERFLOW) / 2);
+          const emptyLines = Math.ceil((array.length - MAX_MESSAGE_LINES_BEFORE_OVERFLOW) / 2);
 
-          for (var i = 0; i < emptyLines; i++) {
+          for (let i = 0; i < emptyLines; i++) {
             greeting.unshift('');
           }
 
-          frame.top = pad.left(frame.top, TOTAL_CHARACTERS_PER_LINE);
+          frame.top = pad.left(frame.top, totalCharactersPerLine);
         }
 
         greeting[topOffset - 1] += frame.top;
