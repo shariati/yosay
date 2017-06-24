@@ -1,13 +1,13 @@
 #!/usr/bin/env node
 'use strict';
-var pkg = require('./package.json');
-var begoo = require('./');
+const pkg = require('./package.json');
+const begoo = require('./');
 
 require('taketalk')({
-  init: function (input, options) {
+  init(input, options) {
     console.log(begoo(input, options));
   },
-  help: function () {
+  help() {
     console.log([
       '',
       '  ' + pkg.description,
