@@ -43,7 +43,7 @@
     "string-width": "^2.1.0",
     "strip-ansi": "^4.0.0",
     "taketalk": "^1.0.0",
-    "wrap-ansi": "^2.0.0"
+    "wrap-ansi": "^3.0.0"
   },
   "devDependencies": {
     "mocha": "^3.4.0",
