@@ -145,7 +145,7 @@ module.exports = function (message, options) {
 
   regExNewLine = new RegExp('\\s{' + maxLength + '}');
 
-  const borderHorizontal = repeating(border.horizontal, maxLength + 2);
+  const borderHorizontal = repeating(maxLength + 2, border.horizontal);
 
   frame = {
     top: border.topLeft + borderHorizontal + border.topRight,
