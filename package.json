@@ -46,8 +46,8 @@
     "wrap-ansi": "^2.0.0"
   },
   "devDependencies": {
-    "mocha": "*",
-    "xo": "*"
+    "mocha": "^3.4.0",
+    "xo": "^0.18.0"
   },
   "xo": {
     "space": true
