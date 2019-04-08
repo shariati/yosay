@@ -1,24 +1,24 @@
-'use strict';
-const chalk = require('chalk');
-const pad = require('pad-component');
-const wrap = require('wrap-ansi');
-const stringWidth = require('string-width');
-const stripAnsi = require('strip-ansi');
-const ansiStyles = require('ansi-styles');
-const ansiRegex = require('ansi-regex')();
-const repeating = require('repeating');
-const cliBoxes = require('cli-boxes');
-const _ = require('lodash');
+'use strict'
+const chalk = require('chalk')
+const pad = require('pad-component')
+const wrap = require('wrap-ansi')
+const stringWidth = require('string-width')
+const stripAnsi = require('strip-ansi')
+const ansiStyles = require('ansi-styles')
+const ansiRegex = require('ansi-regex')()
+const repeating = require('repeating')
+const cliBoxes = require('cli-boxes')
+const _ = require('lodash')
 
-const border = cliBoxes.round;
-let leftOffset = 15;
+const border = cliBoxes.round
+let leftOffset = 15
 
 const DEFAULT_GREETING =
   '\n     |\\_/|     ' +
   '\n    / ' + chalk.yellow('@') + ' ' + chalk.yellow('@') + ' \\    ' +
   '\n   ( > º < )   ' +
   '\n    `' + chalk.yellow('>>') + chalk.red('x') + chalk.yellow('<<') + '´    ' +
-  '\n    /  O  \\    ';
+  '\n    /  O  \\    '
 
 const AVATAR_LIST = [{
   name: 'cat',
@@ -78,11 +78,11 @@ const AVATAR_LIST = [{
   width: 16,
   leftOffset: 15
 }
-];
+]
 
 module.exports = function (message, options) {
-  message = (message || 'Welcome to Begoo! \n Meow ...').trim();
-  options = options || {};
+  message = (message || 'Welcome to Begoo! \n Meow ...').trim()
+  options = options || {}
 
   /*
    * What you're about to see may confuse you. And rightfully so. Here's an
@@ -100,156 +100,156 @@ module.exports = function (message, options) {
    * Better implementations welcome :)
    */
 
-  let maxLength = 24;
-  let avatar = DEFAULT_GREETING;
-  let frame = '';
-  const styledIndexes = {};
-  let completedString = '';
-  let regExNewLine = '';
-  let topOffset = 4;
+  let maxLength = 24
+  let avatar = DEFAULT_GREETING
+  let frame = ''
+  const styledIndexes = {}
+  let completedString = ''
+  let regExNewLine = ''
+  let topOffset = 4
 
-  const DEFAULT_CHARACTER_WIDTH = 15;
+  const DEFAULT_CHARACTER_WIDTH = 15
 
   // Amount of characters of the default top frame of the speech bubble → `╭──────────────────────────╮`
-  const DEFAULT_TOP_FRAME_WIDTH = 20;
+  const DEFAULT_TOP_FRAME_WIDTH = 20
 
   // Amount of characters of a total line
-  let totalCharactersPerLine = DEFAULT_CHARACTER_WIDTH + DEFAULT_TOP_FRAME_WIDTH;
+  let totalCharactersPerLine = DEFAULT_CHARACTER_WIDTH + DEFAULT_TOP_FRAME_WIDTH
 
   // The speech bubble will overflow the Yeoman character if the message is too long.
-  const MAX_MESSAGE_LINES_BEFORE_OVERFLOW = 7;
+  const MAX_MESSAGE_LINES_BEFORE_OVERFLOW = 7
 
   if (options.maxLength) {
-    maxLength = stripAnsi(message).toLowerCase().split(' ').sort()[0].length;
+    maxLength = stripAnsi(message).toLowerCase().split(' ').sort()[0].length
 
     if (maxLength < options.maxLength) {
-      maxLength = options.maxLength;
-      totalCharactersPerLine = maxLength + DEFAULT_CHARACTER_WIDTH + topOffset;
+      maxLength = options.maxLength
+      totalCharactersPerLine = maxLength + DEFAULT_CHARACTER_WIDTH + topOffset
     }
   }
 
   if (options.avatar) {
-    avatar = stripAnsi(message).toLowerCase().split(' ').sort()[0].length;
+    avatar = stripAnsi(message).toLowerCase().split(' ').sort()[0].length
 
     avatar = _.find(AVATAR_LIST, {
       name: options.avatar
-    });
+    })
     if (typeof avatar === 'undefined') {
-      avatar = DEFAULT_GREETING;
+      avatar = DEFAULT_GREETING
     } else {
-      leftOffset = avatar.leftOffset;
-      avatar = avatar.layout;
-      totalCharactersPerLine = avatar.width + DEFAULT_TOP_FRAME_WIDTH;
+      leftOffset = avatar.leftOffset
+      avatar = avatar.layout
+      totalCharactersPerLine = avatar.width + DEFAULT_TOP_FRAME_WIDTH
     }
   }
 
-  regExNewLine = new RegExp('\\s{' + maxLength + '}');
+  regExNewLine = new RegExp('\\s{' + maxLength + '}')
 
-  const borderHorizontal = repeating(maxLength + 2, border.horizontal);
+  const borderHorizontal = repeating(maxLength + 2, border.horizontal)
 
   frame = {
     top: border.topLeft + borderHorizontal + border.topRight,
     side: ansiStyles.reset.open + border.vertical + ansiStyles.reset.open,
     bottom: ansiStyles.reset.open + border.bottomLeft + borderHorizontal + border.bottomRight
-  };
+  }
 
   message.replace(ansiRegex, (match, offset) => {
     Object.keys(styledIndexes).forEach(key => {
-      offset -= styledIndexes[key].length;
-    });
+      offset -= styledIndexes[key].length
+    })
 
-    styledIndexes[offset] = styledIndexes[offset] ? styledIndexes[offset] + match : match;
-  });
+    styledIndexes[offset] = styledIndexes[offset] ? styledIndexes[offset] + match : match
+  })
 
   return wrap(stripAnsi(message), maxLength, {
     hard: true
   })
     .split(/\n/)
     .reduce((greeting, str, index, array) => {
-      let paddedString = '';
+      let paddedString = ''
 
       if (!regExNewLine.test(str)) {
-        str = str.trim();
+        str = str.trim()
       }
 
-      completedString += str;
+      completedString += str
 
       str = completedString
         .substr(completedString.length - str.length)
         .replace(/./g, (char, charIndex) => {
           if (index > 0) {
-            charIndex += completedString.length - str.length + index;
+            charIndex += completedString.length - str.length + index
           }
 
-          let hasContinuedStyle = 0;
-          let continuedStyle;
+          let hasContinuedStyle = 0
+          let continuedStyle
 
           Object.keys(styledIndexes).forEach(offset => {
             if (charIndex > offset) {
-              hasContinuedStyle++;
-              continuedStyle = styledIndexes[offset];
+              hasContinuedStyle++
+              continuedStyle = styledIndexes[offset]
             }
 
             if (hasContinuedStyle === 1 && charIndex < offset) {
-              hasContinuedStyle++;
+              hasContinuedStyle++
             }
-          });
+          })
 
           if (styledIndexes[charIndex]) {
-            return styledIndexes[charIndex] + char;
+            return styledIndexes[charIndex] + char
           } else if (hasContinuedStyle >= 2) {
-            return continuedStyle + char;
+            return continuedStyle + char
           }
 
-          return char;
+          return char
         })
-        .trim();
+        .trim()
 
       paddedString = pad({
         length: stringWidth(str),
-        valueOf() {
-          return ansiStyles.reset.open + str + ansiStyles.reset.open;
+        valueOf () {
+          return ansiStyles.reset.open + str + ansiStyles.reset.open
         }
-      }, maxLength);
+      }, maxLength)
 
       if (index === 0) {
         // Need to adjust the top position of the speech bubble depending on the
         // amount of lines of the message.
         if (array.length === 2) {
-          topOffset -= 1;
+          topOffset -= 1
         }
 
         if (array.length >= 3) {
-          topOffset -= 2;
+          topOffset -= 2
         }
 
         // The speech bubble will overflow the Yeoman character if the message
         // is too long. So we vertically center the bubble by adding empty lines
         // on top of the greeting.
         if (array.length > MAX_MESSAGE_LINES_BEFORE_OVERFLOW) {
-          const emptyLines = Math.ceil((array.length - MAX_MESSAGE_LINES_BEFORE_OVERFLOW) / 2);
+          const emptyLines = Math.ceil((array.length - MAX_MESSAGE_LINES_BEFORE_OVERFLOW) / 2)
 
           for (let i = 0; i < emptyLines; i++) {
-            greeting.unshift('');
+            greeting.unshift('')
           }
 
-          frame.top = pad.left(frame.top, totalCharactersPerLine);
+          frame.top = pad.left(frame.top, totalCharactersPerLine)
         }
 
-        greeting[topOffset - 1] += frame.top;
+        greeting[topOffset - 1] += frame.top
       }
 
       greeting[index + topOffset] =
         (greeting[index + topOffset] || pad.left('', leftOffset)) +
-        frame.side + ' ' + paddedString + ' ' + frame.side;
+        frame.side + ' ' + paddedString + ' ' + frame.side
 
       if (array.length === index + 1) {
         greeting[index + topOffset + 1] =
           (greeting[index + topOffset + 1] || pad.left('', leftOffset)) +
-          frame.bottom;
+          frame.bottom
       }
 
-      return greeting;
+      return greeting
     }, avatar.split(/\n/))
-    .join('\n') + '\n';
-};
+    .join('\n') + '\n'
+}

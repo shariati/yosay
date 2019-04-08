@@ -1,13 +1,13 @@
 #!/usr/bin/env node
-'use strict';
-const pkg = require('./package.json');
-const begoo = require('./');
+'use strict'
+const pkg = require('./package.json')
+const begoo = require('./')
 
 require('taketalk')({
-  init(input, options) {
-    console.log(begoo(input, options));
+  init (input, options) {
+    console.log(begoo(input, options))
   },
-  help() {
+  help () {
     console.log([
       '',
       '  ' + pkg.description,
@@ -22,7 +22,7 @@ require('taketalk')({
       '  Example',
       '    begoo "Amin forked the code from Sindre"',
       begoo('Amin forked the code from Sindre')
-    ].join('\n'));
+    ].join('\n'))
   },
   version: pkg.version
-});
+})

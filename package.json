@@ -1,6 +1,6 @@
 {
   "name": "begoo",
-  "version": "1.0.9",
+  "version": "1.1.0",
   "description": "Say something with style ;)",
   "license": "BSD-2-Clause",
   "keywords": [
@@ -29,25 +29,31 @@
     "node": ">=0.10.0"
   },
   "scripts": {
-    "test": "xo && mocha",
+    "test": "standard && mocha",
     "readme": "node ./node_modules/.bin/node-readme"
   },
   "dependencies": {
-    "ansi-regex": "^3.0.0",
-    "ansi-styles": "^3.2.0",
-    "chalk": "^2.0.0",
-    "cli-boxes": "^1.0.0",
-    "lodash": "^4.17.4",
+    "ansi-regex": "^4.1.0",
+    "ansi-styles": "^3.2.1",
+    "chalk": "^2.4.2",
+    "cli-boxes": "^2.1.0",
+    "lodash": "^4.17.11",
     "pad-component": "0.0.1",
     "repeating": "^3.0.0",
-    "string-width": "^2.1.0",
-    "strip-ansi": "^4.0.0",
+    "string-width": "^4.1.0",
+    "strip-ansi": "^5.2.0",
     "taketalk": "^1.0.0",
-    "wrap-ansi": "^3.0.0"
+    "wrap-ansi": "^5.1.0"
   },
   "devDependencies": {
-    "mocha": "^3.4.0",
-    "xo": "^0.18.0"
+    "eslint": "^5.16.0",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-node": "^8.0.1",
+    "eslint-plugin-promise": "^4.1.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "mocha": "^6.1.1",
+    "standard": "^12.0.1"
   },
   "xo": {
     "space": true
