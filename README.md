@@ -1,6 +1,6 @@
-# begoo [![npm version](https://badge.fury.io/js/begoo.svg)](https://badge.fury.io/js/begoo)[![Build Status](https://travis-ci.org/shariati/begoo.svg?branch=master)](https://travis-ci.org/shariati/begoo)[![Coverage Status](https://coveralls.io/repos/github/shariati/begoo/badge.svg?branch=master)](https://coveralls.io/github/shariati/begoo?branch=master)[![bitHound Code](https://www.bithound.io/github/shariati/begoo/badges/code.svg)](https://www.bithound.io/github/shariati/begoo)[![bitHound Dependencies](https://www.bithound.io/github/shariati/begoo/badges/dependencies.svg)](https://www.bithound.io/github/shariati/begoo/master/dependencies/npm)[![Known Vulnerabilities](https://snyk.io/test/github/shariati/begoo/badge.svg)](https://snyk.io/test/github/shariati/begoo)
+# begoo [![npm version](https://badge.fury.io/js/begoo.svg)](https://badge.fury.io/js/begoo)[![Build Status](https://travis-ci.org/shariati/begoo.svg?branch=master)](https://travis-ci.org/shariati/begoo)[![Coverage Status](https://coveralls.io/repos/github/shariati/begoo/badge.svg?branch=master)](https://coveralls.io/github/shariati/begoo?branch=master)[![Known Vulnerabilities](https://snyk.io/test/github/shariati/begoo/badge.svg)](https://snyk.io/test/github/shariati/begoo)
 
-> Say Something with style ;), It's basically whatever yosay provides plus extra avatars. 
+> Say Something with style ;), It's basically whatever yosay provides plus extra avatars.
 > will be working on this to add more ascii characters.
 > Feel free suggest what would you like to see in the next update I'll try my best to add it.
 
@@ -24,7 +24,7 @@ const begoo = require('begoo');
 console.log(begoo('Welcome to Begoo! \n Meow ...'));
 
 /*
-     |\_/|     
+     |\_/|
     / @ @ \    ╭──────────────────────────╮
    ( > º < )   │     Welcome to Begoo!    │
     `>>x<<´    │         Meow ...         │
@@ -55,7 +55,7 @@ $ begoo --help
   Example
     begoo 'Amin forked the code from yosay'
 
-     |\_/|     
+     |\_/|
     / @ @ \    ╭──────────────────────────╮
    ( > º < )   │   Amin forked the code   │
     `>>x<<´    │        from yosay        │
@@ -64,22 +64,22 @@ $ begoo --help
 
     begoo 'Bark Bark' --avatar 'dog'
 
-             __        
-            /  \      
+             __
+            /  \
            / ..|\     ╭──────────────────────────╮
           (_\  |_)    │         Bark Bark        │
           /  \@'      ╰──────────────────────────╯
-         /     \      
-    _   /  `   |       
-    \\/  \  | _\   
-     \   /_ || \\_  
-      \____)|_) \_)  
+         /     \
+    _   /  `   |
+    \\/  \  | _\
+     \   /_ || \\_
+      \____)|_) \_)
 
 
     begoo 'Its a chicken and egg situation' --avatar 'chicken'
 
 
-      \\     
+      \\
       (o>    ╭──────────────────────────╮
    \\_//)    │   Its a chicken and egg  │
     \_/_)    │         situation        │
