@@ -30,7 +30,9 @@
   },
   "scripts": {
     "test": "standard && mocha",
-    "readme": "node ./node_modules/.bin/node-readme"
+    "readme": "node ./node_modules/.bin/node-readme",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "dependencies": {
     "ansi-regex": "^4.1.0",
@@ -43,7 +45,8 @@
     "string-width": "^4.1.0",
     "strip-ansi": "^5.2.0",
     "taketalk": "^1.0.0",
-    "wrap-ansi": "^5.1.0"
+    "wrap-ansi": "^5.1.0",
+    "snyk": "^1.192.4"
   },
   "devDependencies": {
     "eslint": "^5.16.0",
@@ -57,5 +60,6 @@
   },
   "xo": {
     "space": true
-  }
+  },
+  "snyk": true
 }
