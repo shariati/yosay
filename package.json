@@ -46,7 +46,7 @@
     "strip-ansi": "^5.2.0",
     "taketalk": "^1.0.0",
     "wrap-ansi": "^5.1.0",
-    "snyk": "^1.221.1"
+    "snyk": "^1.258.2"
   },
   "devDependencies": {
     "eslint": "^5.16.0",
